@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
 Route::get('/',[ArticlesController::class,'list']);
 
-Route::get('searchSimple', [SearchController::class,'search'])->name('searchSimple');
+Route::get('searching', [SearchController::class,'search'])->name('searchSimple');
 
 Route::prefix('lists')->name('articles.')->group(function(){
     Route::get('/',[ArticlesController::class,'list'])->name('list');

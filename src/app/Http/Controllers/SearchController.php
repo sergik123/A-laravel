@@ -8,6 +8,10 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        dd($request->get('q'));
+       // dd($request);
+        $search=$request->get('q');
+        $article=new ArticlesController();
+        $item=$article->articleId($search);
+        return view('articles.list',['items'=>$item]);
     }
 }

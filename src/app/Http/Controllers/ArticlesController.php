@@ -31,6 +31,19 @@ class ArticlesController extends Controller
         return 'articles not found';
     }
 
+    public function articleId($title)
+    {
+        $article=$this->allList();
+
+        foreach ($article as $item)
+        {
+            if($item['title']==$title){
+                return ['items'=>$item];
+            }
+        }
+        return 'article not found';
+    }
+
     public function allList()
     {
         return [
