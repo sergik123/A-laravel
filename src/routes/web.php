@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArticlesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ExportController;
-use App\Repositories\UserRepository;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,24 +16,11 @@ use App\Repositories\UserRepository;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',[ArticlesController::class,'list']);
+
+Route::prefix('lists')->name('articles.')->group(function(){
+    Route::get('/',[ArticlesController::class,'list'])->name('list');
+    Route::get('/{id}',[ArticlesController::class,'item'])->name('item');
 });
 
-Route::get('users/',function(){
-    $admins=[
-        ['username'=>'admin','name'=>'Ivan'],
-        ['username'=>'user1','name'=>'Vasya'],
-    ];
-    dd($admins);
-})->name('users');
-Route::get('user/{id}',[UserController::class,'user'])->whereNumber('id');
-
-Route::get('test',[UserRepository::class,'list']);
-Route::get('export',ExportController::class);
-
-Route::get('request-test',function(Request $request){
-   // dd($request->input('b'));
-    dd($request->b);
-});
 
