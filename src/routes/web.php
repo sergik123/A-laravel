@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/',[ArticlesController::class,'list']);
+
+Route::get('searchSimple', [SearchController::class,'search'])->name('searchSimple');
 
 Route::prefix('lists')->name('articles.')->group(function(){
     Route::get('/',[ArticlesController::class,'list'])->name('list');
