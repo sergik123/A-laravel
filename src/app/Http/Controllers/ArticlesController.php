@@ -28,7 +28,7 @@ class ArticlesController extends Controller
                     ['article'=>$item]);
             }
         }
-        return 'articles not found';
+        return false;
     }
 
     public function articleId($title)
