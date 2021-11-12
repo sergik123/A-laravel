@@ -1,41 +1,25 @@
 <?php
+namespace App\Repositories;
 
-namespace App\Http\Controllers;
-
-use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
-
-class ArticlesController extends Controller
+class UserRepository
 {
-    public $repository;
-    public function __construct(UserRepository $repository)
+    public function allPosts()
     {
-        $this->repository=$repository;
+        return $this->all();
     }
 
-    public function list()
+    public function getByFilter($filter='id',$val)
     {
-        return view('articles.list',['items'=>$this->repository->allPosts()]);
-    }
-
-    public function item($id)
-    {
-        $item=$this->repository->getByFilter('id',$id);
-        return view('articles.item', ['article'=>$item]);
-    }
-
-    public function searchPost(Request $request)
-    {
-        $search=$request->get('q');
-        $item=$this->repository->getByFilter('title',$search);
-        if($item){
-            return $item;
-        }else{
-            return 'error';
+        foreach ($this->all() as $post) {
+            if ($post[$filter] == $val) {
+                return $post;
+            }
         }
+
+        return null;
     }
 
-    public function allList()
+    protected function all()
     {
         return [
             ['id'=>1,'title'=>'articles1','content'=>'content1'],
