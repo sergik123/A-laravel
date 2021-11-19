@@ -2,6 +2,6 @@
 <span><b>Название статьи</b></span>
 <p>{{ $article['title'] }}</p>
 <span><b>Описание статьи</b></span>
-<p>{{$article['content']}}</p>
+<p>{{$article['text']}}</p>
 
 <a href="/">Вернуться на главную страницу</a>
